@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1475098A21521A5600227D9A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475098921521A5600227D9A /* main.swift */; };
 		147CC03C2151E5F400F1AA4E /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 147CC03B2151E5F400F1AA4E /* Configuration.plist */; };
 		147CC03E2151E7F900F1AA4E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CC03D2151E7F900F1AA4E /* Configuration.swift */; };
 		147CC0402151E81E00F1AA4E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CC03F2151E81E00F1AA4E /* AuthenticationManager.swift */; };
@@ -14,11 +15,11 @@
 		147CC0442151EFB500F1AA4E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CC0432151EFB500F1AA4E /* Result.swift */; };
 		147CC0492151F55C00F1AA4E /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 147CC0482151F55C00F1AA4E /* Icon.icns */; };
 		1497A6C12150CA3400C019B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497A6C02150CA3400C019B9 /* AppDelegate.swift */; };
-		1497A6C82150CA3600C019B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1497A6C62150CA3600C019B9 /* Main.storyboard */; };
 		1497A6D92150CE3F00C019B9 /* TrackGetter.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 1497A6D82150CE3F00C019B9 /* TrackGetter.scpt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1475098921521A5600227D9A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		147CC03B2151E5F400F1AA4E /* Configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		147CC03D2151E7F900F1AA4E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		147CC03F2151E81E00F1AA4E /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -27,7 +28,6 @@
 		147CC0482151F55C00F1AA4E /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		1497A6BD2150CA3400C019B9 /* Spotify - Add to Playlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify - Add to Playlist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1497A6C02150CA3400C019B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1497A6C72150CA3600C019B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1497A6C92150CA3600C019B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1497A6CA2150CA3600C019B9 /* SpotifyAddToPlaylist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotifyAddToPlaylist.entitlements; sourceTree = "<group>"; };
 		1497A6D82150CE3F00C019B9 /* TrackGetter.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = TrackGetter.scpt; sourceTree = "<group>"; };
@@ -63,6 +63,7 @@
 		1497A6BF2150CA3400C019B9 /* SpotifyAddToPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				1475098921521A5600227D9A /* main.swift */,
 				1497A6C02150CA3400C019B9 /* AppDelegate.swift */,
 				147CC0432151EFB500F1AA4E /* Result.swift */,
 				147CC0412151E83500F1AA4E /* NowPlayingFetcher.swift */,
@@ -71,7 +72,6 @@
 				147CC03B2151E5F400F1AA4E /* Configuration.plist */,
 				1497A6D82150CE3F00C019B9 /* TrackGetter.scpt */,
 				147CC0482151F55C00F1AA4E /* Icon.icns */,
-				1497A6C62150CA3600C019B9 /* Main.storyboard */,
 				1497A6C92150CA3600C019B9 /* Info.plist */,
 				1497A6CA2150CA3600C019B9 /* SpotifyAddToPlaylist.entitlements */,
 			);
@@ -89,6 +89,7 @@
 				1497A6B92150CA3400C019B9 /* Sources */,
 				1497A6BA2150CA3400C019B9 /* Frameworks */,
 				1497A6BB2150CA3400C019B9 /* Resources */,
+				1475098B21521B4A00227D9A /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -148,13 +149,30 @@
 				147CC03C2151E5F400F1AA4E /* Configuration.plist in Resources */,
 				1497A6D92150CE3F00C019B9 /* TrackGetter.scpt in Resources */,
 				147CC0492151F55C00F1AA4E /* Icon.icns in Resources */,
-				1497A6C82150CA3600C019B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1475098B21521B4A00227D9A /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		147CC0472151F0E300F1AA4E /* Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -182,6 +200,7 @@
 			files = (
 				147CC0442151EFB500F1AA4E /* Result.swift in Sources */,
 				147CC03E2151E7F900F1AA4E /* Configuration.swift in Sources */,
+				1475098A21521A5600227D9A /* main.swift in Sources */,
 				147CC0402151E81E00F1AA4E /* AuthenticationManager.swift in Sources */,
 				147CC0422151E83500F1AA4E /* NowPlayingFetcher.swift in Sources */,
 				1497A6C12150CA3400C019B9 /* AppDelegate.swift in Sources */,
@@ -189,17 +208,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		1497A6C62150CA3600C019B9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1497A6C72150CA3600C019B9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1497A6CB2150CA3600C019B9 /* Debug */ = {
@@ -328,6 +336,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewfinke.SpotifyAddToPlaylist;
 				PRODUCT_NAME = "Spotify - Add to Playlist";
 				SWIFT_VERSION = 4.2;
@@ -345,6 +354,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewfinke.SpotifyAddToPlaylist;
 				PRODUCT_NAME = "Spotify - Add to Playlist";
 				SWIFT_VERSION = 4.2;

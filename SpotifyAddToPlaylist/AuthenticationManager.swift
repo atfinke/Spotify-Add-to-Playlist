@@ -12,8 +12,6 @@ class AuthenticationManager {
 
     // MARK: - Properties
 
-    static let shared = AuthenticationManager()
-
     private var authorizationCode: String? {
         get {
             return UserDefaults.standard.string(forKey: #function)
@@ -51,7 +49,9 @@ class AuthenticationManager {
     }
 
     private var isAccessTokenValid: Bool {
-        if accessToken != nil, let date = accessTokenExpiration, date.timeIntervalSinceNow > 60 {
+        if accessToken != nil,
+            let date = accessTokenExpiration,
+            date.timeIntervalSinceNow > 60 {
             return true
         } else {
             return false
@@ -61,6 +61,8 @@ class AuthenticationManager {
     // MARK: - Authorization Code
 
     private func requestAuthorizationCode () {
+        print(#function)
+
         guard !isAccessTokenValid else { return }
 
         var components = URLComponents()
@@ -80,6 +82,8 @@ class AuthenticationManager {
     }
 
     func handleOpenURL(_ components: URLComponents) {
+        print(#function)
+
         guard components.queryItems?.count == 1,
             let item = components.queryItems?.first,
             item.name == "code",
@@ -95,9 +99,11 @@ class AuthenticationManager {
 
     // MARK: - Access Code
 
-    func requestAccessToken(completion: ((String?) -> ())? = nil) {
+    //swiftlint:disable:next function_body_length
+    func requestAccessToken(completion: ((String?) -> Void)? = nil) {
+        print(#function)
+
         if isAccessTokenValid, let token = accessToken {
-            print("Using cache")
             completion?(token)
             return
         }
@@ -106,12 +112,12 @@ class AuthenticationManager {
         if let token = refreshToken {
             additionalQueryItems = [
                 URLQueryItem(name: "grant_type", value: "refresh_token"),
-                URLQueryItem(name: "refresh_token", value: token),
+                URLQueryItem(name: "refresh_token", value: token)
             ]
         } else if let code = authorizationCode {
             additionalQueryItems = [
                 URLQueryItem(name: "grant_type", value: "authorization_code"),
-                URLQueryItem(name: "code", value: code),
+                URLQueryItem(name: "code", value: code)
             ]
         } else {
             requestAuthorizationCode()
@@ -149,7 +155,7 @@ class AuthenticationManager {
                         Result.error("Invalid access token json")
                         return
                 }
-                
+
                 self.accessToken = accessToken
                 self.accessTokenExpiration = Date(timeIntervalSinceNow: TimeInterval(expiresIn))
                 self.refreshToken = (json??["refresh_token"] as? String) ?? self.refreshToken
@@ -160,5 +166,4 @@ class AuthenticationManager {
         task.resume()
     }
 
-   
 }

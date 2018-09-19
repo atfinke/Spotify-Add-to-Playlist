@@ -8,11 +8,16 @@
 
 import Cocoa
 
-@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+
+    // MARK: - Properties
+
+    private let authManager = AuthenticationManager()
+    private let nowPlayingFetcher = NowPlayingFetcher()
 
     // MARK: - NSApplicationDelegate
 
+    //swiftlint:disable:next function_body_length
     func applicationDidFinishLaunching(_ notification: Notification) {
         let eventManager = NSAppleEventManager.shared()
         eventManager.setEventHandler(self,
@@ -21,44 +26,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                                      andEventID: AEEventID(kAEGetURL))
 
         guard let bundleID = Bundle.main.bundleIdentifier else { fatalError() }
-        LSSetDefaultHandlerForURLScheme("spotify-add-to-playlist" as CFString, bundleID as CFString)
+        LSSetDefaultHandlerForURLScheme("spotify-add-to-playlist" as CFString,
+                                        bundleID as CFString)
 
         NSUserNotificationCenter.default.delegate = self
         NSUserNotificationCenter.default.removeAllDeliveredNotifications()
 
-        start()
-    }
-
-    @objc func handleEvent(_ event: NSAppleEventDescriptor) {
-        guard let descriptor = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject)),
-            let stringValue = descriptor.stringValue,
-            let components = URLComponents(string: stringValue) else {
-                return
-        }
-        AuthenticationManager.shared.handleOpenURL(components)
-    }
-
-    // MARK: - NSUserNotificationCenterDelegate
-
-    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
-    }
-
-    // MARK: - Main
-
-    func start() {
-        guard let track = NowPlayingFetcher().track else {
+        guard let track = nowPlayingFetcher.track else {
             Result.error("Failed to get track")
             return
         }
 
-        AuthenticationManager.shared.requestAccessToken { accessToken in
+        authManager.requestAccessToken { accessToken in
             guard let token = accessToken else { return }
 
             var components = URLComponents()
             components.scheme = "https"
             components.host = "api.spotify.com"
-            components.path = "/v1/users/" + Configuration.shared.username + "/playlists/" + Configuration.shared.playlistID + "/tracks"
+            components.path = "/v1/users/"
+                + Configuration.shared.username
+                + "/playlists/"
+                + Configuration.shared.playlistID
+                + "/tracks"
 
             components.queryItems = [
                 URLQueryItem(name: "playlist_id", value: Configuration.shared.playlistID),
@@ -90,5 +79,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
 
     }
-}
 
+    // MARK: - Open URL
+
+    @objc func handleEvent(_ event: NSAppleEventDescriptor) {
+        guard let descriptor = event.paramDescriptor(forKeyword: AEKeyword(keyDirectObject)),
+            let stringValue = descriptor.stringValue,
+            let components = URLComponents(string: stringValue) else {
+                return
+        }
+        authManager.handleOpenURL(components)
+    }
+
+    // MARK: - NSUserNotificationCenterDelegate
+
+    func userNotificationCenter(_ center: NSUserNotificationCenter,
+                                shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
+}
