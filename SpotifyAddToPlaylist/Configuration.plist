@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Username</key>
+	<string>j3d1_warr10r</string>
+	<key>Playlist ID</key>
+	<string></string>
+	<key>Redirect URI</key>
+	<string>spotify-add-to-playlist://</string>
+	<key>Client Secret</key>
+	<string></string>
+	<key>Client ID</key>
+	<string></string>
+</dict>
+</plist>
