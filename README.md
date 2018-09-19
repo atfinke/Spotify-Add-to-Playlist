@@ -1,4 +1,4 @@
-# Spotify-Add-to-Playlist
+# Spotify - Add to Playlist
 
 This is a simple macOS app that when launched, attempts to add the currently playing song in Spotify to a specified playlist. It then swiftly exits, presenting a success/failure notification. This was designed to be used as a service (w/ Automator) so you can quickly save a song, no matter what app you're in.
 
