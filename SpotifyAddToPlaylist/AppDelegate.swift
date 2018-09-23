@@ -36,6 +36,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             Result.error("Failed to get track")
             return
         }
+        
+        if UserDefaults.standard.string(forKey: "lastURI") == track.uri {
+            Result.error("Already added")
+            return
+        }
 
         authManager.requestAccessToken { accessToken in
             guard let token = accessToken else { return }
@@ -72,6 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                             Result.error("Error when reading snapshot json")
                             return
                     }
+                    UserDefaults.standard.set(track.uri, forKey: "lastURI")
                     Result.success("\(track.name) by \(track.artist)")
                 }
             }
